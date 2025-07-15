@@ -6,8 +6,11 @@ import TransactionList from './components/TransactionList';
 import AddTransaction from './components/AddTransaction';
 import './App.css';
 
+import {GlobalProvider} from './context/GlobalState';
+
 const App = () => {
   return (
+    <GlobalProvider>
     <div>
       <Header/>
       <div className="container">
@@ -17,6 +20,7 @@ const App = () => {
         <AddTransaction/>
       </div>
     </div>
+     </GlobalProvider>
   )
 }
 
