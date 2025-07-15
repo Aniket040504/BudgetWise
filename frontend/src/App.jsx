@@ -14,8 +14,8 @@ const App = () => {
         <Balance />
         <IncomeExpenses/>
         <TransactionList/>
+        <AddTransaction/>
       </div>
-      <AddTransaction/>
     </div>
   )
 }
