@@ -20,11 +20,53 @@ const getTransaction = async (req, res) => {
 };
 
 const addTransaction = async (req, res) => {
-  res.json('hello from controller');
+ try{
+    const {text,amount}=req.body;
+    const transaction=await Transaction.create(req.body);
+    return res.send(201).json({
+        success:true,
+        data:transaction
+    })
+ }
+ catch(err){
+    if(err.name==='ValidationError'){
+        const messages=Object.values(err.errors).map(val=>val.message);
+        return res.status(400).json({
+            success:false,
+            error:messages
+        })
+    }
+    else{
+        return res.status(500).json({
+      success: false,
+      error: 'Server Error',
+    });
+    }
+ }
 };
 
 const deleteTransaction = async (req, res) => {
-  res.json('hello from controller');
+  try{
+    const transaction=await Transaction.findbyId(req.params.id);
+    if(!transaction){
+        return res.status(404).json({
+            success:false,
+            error:'No Transaction found' 
+        })
+    }
+    await transaction.remove();
+
+    return res.status(200).json({
+        success:true,
+        data:{}
+    })
+  }
+  catch(err){
+    return res.status(500).json({
+      success: false,
+      error: 'Server Error',
+    });
+  }
 };
 
 module.exports = {
