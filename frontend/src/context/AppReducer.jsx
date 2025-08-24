@@ -1,16 +1,5 @@
 export default (state,action)=>{
     switch(action.type){
-        case 'GET_TRANSACTION':
-            return{
-                ...state,
-                loading:false,
-                transactions:[...state.transactions,action.payload ]
-            }
-        case 'TRANSACTION_ERROR':
-            return{
-                ...state,
-                payload:action.payload
-            }
         case'DELETE_TRANSACTION':
         return{
             ...state,
