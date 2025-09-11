@@ -23,7 +23,7 @@ const addTransaction = async (req, res) => {
  try{
     const {text,amount}=req.body;
     const transaction=await Transaction.create(req.body);
-    return res.send(201).json({
+    return res.status(201).json({
         success:true,
         data:transaction
     })

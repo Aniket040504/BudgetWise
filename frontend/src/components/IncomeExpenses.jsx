@@ -3,8 +3,8 @@ import { GlobalContext } from '../context/GlobalState';
 
 const IncomeExpenses = () => {
   const { transactions } = useContext(GlobalContext); 
-
-  const amounts = transactions.map(transaction => transaction.amount);
+  const safeTransactions = Array.isArray(transactions) ? transactions : [];
+  const amounts = safeTransactions.map(transaction => transaction.amount);
 
   const income = amounts
     .filter(item => item > 0)
